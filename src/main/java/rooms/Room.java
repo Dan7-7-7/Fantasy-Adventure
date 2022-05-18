@@ -16,6 +16,10 @@ public abstract class Room {
         this.roomNumber = roomNumber;
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     public void addPlayer(Player player){
         players.add(player);
     }
@@ -30,6 +34,10 @@ public abstract class Room {
 
     public int numberOfPlayers(){
         return players.size();
+    }
+
+    public String getPlayer(){
+        return players.get(0).getName();
     }
 
     public void stageFight(){
@@ -59,10 +67,13 @@ public abstract class Room {
 //        include berserk, treasure etc
     }
 
-    public void completeRoom(Player player){
+    public String completeRoom(Player player){
         player.addCompletedRoom(roomNumber);
+        String message = String.format("Congratulations %s, you have completed room %s!", player.getName(), roomNumber);
+        System.out.println(message);
         if(player.completedFiveRooms()){
             player.completeGame();
         }
+        return message;
     }
 }

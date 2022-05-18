@@ -10,6 +10,7 @@ public class Barbarian extends Warrior {
     }
 
     public void berserk(){
-//        temporarily increase strength and lose health points
+        setStrength(getStrength() * 2);
+        setHealthPoints(getHealthPoints() / 2);
     }
 }

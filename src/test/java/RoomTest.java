@@ -1,3 +1,4 @@
+import creatures.Monster;
 import creatures.MythicalCreature;
 import enums.SpellType;
 import enums.WeaponType;
@@ -7,10 +8,11 @@ import players.Wizard;
 import players.warriors.Barbarian;
 import players.warriors.Dwarf;
 import players.warriors.Knight;
+import rooms.MonsterRoom;
 import rooms.Room;
 import rooms.TreasureRoom;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class RoomTest {
 
@@ -40,5 +42,25 @@ public class RoomTest {
         room.stageFight();
         assertEquals(false, room.playersPresent());
         assertEquals(1, room.numberOfPlayers());
+        System.out.println(room.getPlayer());
+    }
+
+    @Test
+    public void canCompleteRoom(){
+        room.addPlayer(knight);
+        String output = room.completeRoom(knight);
+        assertEquals("Congratulations Brienne, you have completed room 2!", output);
+    }
+
+    @Test
+    public void canFightMonster(){
+        Monster monster = new Monster("Bob", 14, "dragon", 23);
+        MonsterRoom monsterRoom = new MonsterRoom(3, monster);
+        monsterRoom.addPlayer(barbarian);
+        monsterRoom.stageFightWithMonster();
+        assertTrue(barbarian.isAlive() ^ monster.isAlive());
+//        assertTrue(barbarian.isAlive() || monster.isAlive());
+//        assertFalse(barbarian.isAlive() && monster.isAlive());
+
     }
 }

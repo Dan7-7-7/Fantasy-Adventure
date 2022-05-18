@@ -59,4 +59,8 @@ public abstract class Player {
     public String completeGame(){
         return "You won!";
     }
+
+    public String getName() {
+        return name;
+    }
 }
