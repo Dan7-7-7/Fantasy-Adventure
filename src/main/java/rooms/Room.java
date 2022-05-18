@@ -1,6 +1,8 @@
 package rooms;
 
 import players.Player;
+import players.Warrior;
+import players.Wizard;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,36 @@ public abstract class Room {
         return players.size() > 1;
     }
 
+    public int numberOfPlayers(){
+        return players.size();
+    }
+
     public void stageFight(){
+//        calculate player one strength
+        Player playerOne = players.get(0);
+        Player playerTwo = players.get(1);
+        double randomTurnDecider = Math.random();
+        Player activePlayer = randomTurnDecider >= 0.5 ? playerOne : playerTwo;
+        if(activePlayer instanceof Warrior){
+            ((Warrior) activePlayer).attack();
+        } else {
+            ((Wizard) activePlayer).castSpell();
+        }
+        int playerOneStrength = playerOne.getStrength();
+        int playerTwoStrength = playerTwo.getStrength();
+        if (playerOneStrength > playerTwoStrength) {
+            playerTwo.loseBattleRound();
+        }
+        else {
+            playerOne.loseBattleRound();
+        }
+        playerOne.resetStrength();
+        playerTwo.resetStrength();
+        players.removeIf(player -> !player.isAlive());
+        if(players.size() > 1){
+            stageFight();
+        }
+//        calculate player two strength
 //        first two players
 //        check classes
 //        get strengths
@@ -36,5 +67,8 @@ public abstract class Room {
 
     public void completeRoom(Player player){
         player.addCompletedRoom(roomNumber);
+        if(player.completedFiveRooms()){
+            player.completeGame();
+        }
     }
 }

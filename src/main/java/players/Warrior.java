@@ -6,8 +6,8 @@ public class Warrior extends Player {
 
     private WeaponType weaponType;
 
-    public Warrior(String name, int strength, int healthPoints, WeaponType weaponType) {
-        super(name, strength, healthPoints);
+    public Warrior(String name, int strength, int defaultStrength, int healthPoints, WeaponType weaponType) {
+        super(name, strength, defaultStrength, healthPoints);
         this.weaponType = weaponType;
     }
 
@@ -19,7 +19,7 @@ public class Warrior extends Player {
         this.weaponType = weaponType;
     }
 
-    public void attack(Player player){
-//        weaker warrior dies, winner loses health points, attacker has extra advantage
+    public void attack(){
+        setStrength(getStrength() + weaponType.getValue());
     }
 }

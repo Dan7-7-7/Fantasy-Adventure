@@ -8,8 +8,8 @@ public class Wizard extends Player {
     private SpellType spellType;
     private MythicalCreature mythicalCreature;
 
-    public Wizard(String name, int strength, int healthPoints, SpellType spellType, MythicalCreature mythicalCreature) {
-        super(name, strength, healthPoints);
+    public Wizard(String name, int strength, int defaultStrength, int healthPoints, SpellType spellType, MythicalCreature mythicalCreature) {
+        super(name, strength, 9, healthPoints);
         this.spellType = spellType;
         this.mythicalCreature = mythicalCreature;
     }
@@ -22,8 +22,8 @@ public class Wizard extends Player {
         this.spellType = spellType;
     }
 
-    public void castSpellOnPlayer(Player player){
-
+    public void castSpell(){
+        setStrength(getStrength() + spellType.getValue());
     }
 
     public void useMythicalCreature(){

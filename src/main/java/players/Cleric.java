@@ -6,8 +6,8 @@ public class Cleric extends Player {
 
     private HealingType healingType;
 
-    public Cleric(String name, int strength, int healthPoints, HealingType healingType) {
-        super(name, strength, healthPoints);
+    public Cleric(String name, int strength, int defaultStrength, int healthPoints, HealingType healingType) {
+        super(name, strength, 10, healthPoints);
         this.healingType = healingType;
     }
 

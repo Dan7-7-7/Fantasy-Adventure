@@ -6,8 +6,8 @@ import players.Warrior;
 public class Dwarf extends Warrior {
     private int treasureValue;
 
-    public Dwarf(String name, int strength, int healthPoints, WeaponType weaponType, int treasureValue) {
-        super(name, strength, healthPoints, weaponType);
+    public Dwarf(String name, int strength, int defaultStrength, int healthPoints, WeaponType weaponType, int treasureValue) {
+        super(name, strength, 8, healthPoints, weaponType);
         this.treasureValue = treasureValue;
     }
 
