@@ -33,7 +33,6 @@ public abstract class Room {
     }
 
     public void stageFight(){
-//        calculate player one strength
         Player playerOne = players.get(0);
         Player playerTwo = players.get(1);
         double randomTurnDecider = Math.random();
@@ -57,12 +56,7 @@ public abstract class Room {
         if(players.size() > 1){
             stageFight();
         }
-//        calculate player two strength
-//        first two players
-//        check classes
-//        get strengths
 //        include berserk, treasure etc
-//        determine winner
     }
 
     public void completeRoom(Player player){
